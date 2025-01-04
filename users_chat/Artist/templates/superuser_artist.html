@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superuser Page</title>
+    <link rel="stylesheet" href="{% static 'css/superuser_artist.css' %}">
+</head>
+<body>
+    <header class="header">
+        <h1>Welcome, Superuser!</h1>
+        <nav class="nav">
+            <a href="{% url 'logout_art' %}" class="btn logout">Logout</a>
+        </nav>
+    </header>
+
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+    <section class="content">
+        <!-- Pending Users Section -->
+        <h2>Pending Users</h2>
+        <ul class="user-list">
+            {% for user in pending_users %}
+            <li class="user-card">
+                <div class="user-info">
+                    <div class="user-image">
+                        {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" alt="{{ user.user.username }}">
+                        {% else %}
+                        <span class="no-pic">No Picture</span>
+                        {% endif %}
+                    </div>
+                    <div class="user-details">
+                        <p><strong>Username:</strong> {{ user.user.username }}</p>
+                        <p><strong>Bio:</strong> {{ user.bio }}</p>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <form method="POST" class="action-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.user.id }}">
+                        <button type="submit" name="action" value="approve" class="btn approve">Approve</button>
+                        <button type="submit" name="action" value="delete" class="btn delete">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Approved Users Section -->
+        <h2>Approved Users</h2>
+        <ul class="user-list">
+            {% for user in approved_users %}
+            <li class="user-card">
+                <div class="user-info">
+                    <div class="user-image">
+                        {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" alt="{{ user.user.username }}">
+                        {% else %}
+                        <span class="no-pic">No Picture</span>
+                        {% endif %}
+                    </div>
+                    <div class="user-details">
+                        <p><strong>Username:</strong> {{ user.user.username }}</p>
+                        <p><strong>Bio:</strong> {{ user.bio }}</p>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <a href="{% url 'chat_art' user.user.id %}" class="btn chat">Chat</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Chat</title>
+    <link rel="stylesheet" href="{% static 'css/user_artist.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="heading">Chat Securely with the Admin</h1>
+            <p class="info-text">We value your privacy. Connect securely and directly with the admin for your concerns or queries.</p>
+            {% comment %} <a href="{% url 'chat_art' request.user.username %}"class="chat-link">Enter Chat Room</a> {% endcomment %}
+            <a href="#"class="chat-link">Enter Chat Room</a>
+            <a href="{% url 'logout_art'  %}"class="chat-link">logout</a>
+        </div>
+    </div>
+</body>
+</html>

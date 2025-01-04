@@ -1,0 +1,210 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #499ff0, #37f8ff);
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #fdfdfd;
+}
+
+/* Content Section */
+.content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 1.8rem;
+    color: #ff1212;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* User List */
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(248, 51, 255, 0.4);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #ff12eb;
+    margin-right: 20px;
+}
+
+.user-details p {
+    margin: 5px 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.approve {
+    background: #4caf50;
+    color: #fff;
+}
+
+.approve:hover {
+    background: #388e3c;
+}
+
+.delete {
+    background: #f44336;
+    color: #fff;
+}
+
+.delete:hover {
+    background: #d32f2f;
+}
+
+.chat {
+    background: #03a9f4;
+    color: #fff;
+}
+
+.chat:hover {
+    background: #0288d1;
+}
+
+/* Messages */
+.message {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ffd700;
+    color: #000;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-image img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffd700;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav .btn.logout {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #e53935;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav .btn.logout:hover {
+    background: #c62828;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav .btn.logout {
+        margin-top: 10px;
+    }
+}
