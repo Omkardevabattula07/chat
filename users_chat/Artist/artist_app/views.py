@@ -4,7 +4,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile,Message
 from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django_ratelimit.decorators import ratelimit
@@ -141,12 +141,27 @@ def user_art(request):
 
 
 @login_required
-def chat_art(request, user_id):
+def info_art(request, user_id):
     
     user = get_object_or_404(User, id=user_id)
     
-    return render(request, 'chat_artist.html', {'chat_user': user})
+    return render(request, 'info_artist.html', {'chat_user': user})
+@login_required
+def chat_art(request, username):
+    other_user = get_object_or_404(User, username=username)
+    room_name = f'private_{min(request.user.username, other_user.username)}_{max(request.user.username, other_user.username)}'
 
+    # Fetch all messages for this room
+    messages = Message.objects.filter(
+        sender__in=[request.user, other_user],
+        receiver__in=[request.user, other_user]
+    ).order_by('timestamp')
+
+    return render(request, 'chat_artist.html', {
+        'room_name': room_name,
+        'other_user': other_user,
+        'messages': messages,
+    })
 
 @login_required
 def logout_art(request):

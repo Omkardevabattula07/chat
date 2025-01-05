@@ -68,7 +68,13 @@
                     </div>
                 </div>
                 <div class="user-actions">
-                    <a href="{% url 'chat_art' user.user.id %}" class="btn chat">Chat</a>
+                    {% comment %} <a href="{% url 'chat' user.user.id %}" class="btn chat">INFO</a> {% endcomment %}
+                    <form method="POST" class="action-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.user.id }}">
+                        <button type="submit" name="action" value="delete" class="btn delete">Delete</button>
+                    </form>
+                    
                 </div>
             </li>
             {% endfor %}
