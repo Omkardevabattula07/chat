@@ -127,6 +127,8 @@ def superuser_art(request):
 def user_art(request):
     if request.user.is_superuser:
         return redirect('superuser_art')
+    # if not request.user.is_authenticate:
+    #     return redirect ('login_art')
     """
     View for the user page.
     Displays all approved users except the superuser.

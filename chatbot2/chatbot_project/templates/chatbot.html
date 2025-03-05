@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 50px; }
+        .chat-container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        .chat-box { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background: #fff; }
+        input { width: 80%; padding: 10px; margin: 10px; }
+        button { padding: 10px 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <h2>Simple Chatbot</h2>
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Ask something...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userMessage = document.getElementById("user-input").value;
+            var chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += "<p><strong>You:</strong> " + userMessage + "</p>";
+            
+            fetch("/get-response/?message=" + userMessage)
+            .then(response => response.json())
+            .then(data => {
+                chatBox.innerHTML += "<p><strong>Bot:</strong> " + data.answer + "</p>";
+            });
+        }
+    </script>
+
+</body>
+</html>
